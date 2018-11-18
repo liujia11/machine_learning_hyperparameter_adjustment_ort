@@ -1,4 +1,4 @@
-@[TOC](机器学习调参 一种超参数调整方法的尝试（附测试链接）)
+# 机器学习调参 一种超参数调整方法的尝试
 
 # 简介
 下面的内容是本人想法的一次尝试性的工作，本文的目的仅在于学习交流，有的知识也是一知半解，不对的地方尽请指正。
@@ -19,7 +19,7 @@
 解决：相关的设计，代码中可以进行查询，根据正交表，设置超参数范围。
 
 # 调参流程
-以xgboost的超参数调整为例（数据见后面的项目链接）
+以xgboost的超参数调整为例
 ```python
 from xgboost.sklearn import XGBRegressor
 xgb_model = XGBRegressor(n_jobs=-1)  
@@ -29,7 +29,6 @@ y = pd.read_csv('y.csv')
 ## 1. 设计超参数
 查看正交表（比如有四个超参数）
 ```python
-# my_ort代码后面的链接中会有
 from my_ort import ORT
 # 构建正交实验表
 ort = ORT()
@@ -86,7 +85,7 @@ Out[12]:
 ```
 ## 3. 进行训练
 ```python
-# 训练模型 传入训练集，对应的标签，以及损失函数 AdjustParam类见链接代码
+# 训练模型 传入训练集，对应的标签，以及损失函数
 a = AdjustParam(X, y, 'neg_mean_squared_error')
 # 开始训练 传入模型，设计好的超参数正交表
 a.run_ort(model=xgb_model, df_params=param_df)
