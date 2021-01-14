@@ -58,7 +58,7 @@ class AdjustParam(object):
             df_params.loc[i,'ort_train_time'] = t2
         self.ort_res = df_params
         # 筛选最优值
-        res_li = list(map(lambda x: df_params.groupby(x).ort_res.mean().argmin(), df_params.columns[:-3]))
+        res_li = list(map(lambda x: df_params.groupby(x).ort_res.mean().idxmin(), df_params.columns[:-3]))
         param_li = df_params.columns[:-3]
         param_opt = list(map(lambda x: '='.join(x), zip(param_li,map(repr,res_li))))
         # 最优RF模型
